@@ -19,9 +19,11 @@ class Champion
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[SerializedName('dbId')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[SerializedName('id')]
     private ?string $lolId = null;
 
     #[ORM\Column(length: 255)]
