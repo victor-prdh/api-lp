@@ -42,6 +42,8 @@ class UserHelper
             throw new \Exception(sprintf('User %s already exist', $email));   
         }
 
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, $password));
+
         $this->em->persist($user);
         $this->em->flush();
 
