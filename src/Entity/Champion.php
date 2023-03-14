@@ -11,7 +11,7 @@ use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ORM\Entity(repositoryClass: ChampionRepository::class)]
-#[ApiResource()]
+#[ApiResource(paginationEnabled: false)]
 #[Get()]
 #[GetCollection()]
 class Champion
