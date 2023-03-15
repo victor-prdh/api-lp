@@ -14,10 +14,8 @@ use ApiPlatform\Metadata\GetCollection;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 #[ORM\Entity(repositoryClass: ChampionRepository::class)]
-#[ApiResource(paginationEnabled: false)]
-#[Get()]
+#[ApiResource(paginationEnabled: false, operations:[new Get(), new GetCollection()])]
 #[ApiFilter(SearchFilter::class, properties: ['name' => 'partial', 'title' => 'partial', 'lolId' => 'exact'])]
-#[GetCollection()]
 class Champion
 {
     #[ORM\Id]
