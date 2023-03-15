@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\Get;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -23,10 +24,12 @@ class Champion
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[SerializedName('dbId')]
+    #[ApiProperty(identifier: false)]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[SerializedName('id')]
+    #[ApiProperty(identifier: true)]
     private ?string $lolId = null;
 
     #[ORM\Column(length: 255)]
