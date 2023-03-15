@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\Get;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
 #[ORM\Entity(repositoryClass: ChampionRepository::class)]
 #[ApiResource(paginationEnabled: false)]
 #[Get()]
+#[ApiFilter(SearchFilter::class, properties: ['name' => 'partial', 'title' => 'partial', 'lolId' => 'exact'])]
 #[GetCollection()]
 class Champion
 {
