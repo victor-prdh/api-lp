@@ -1,4 +1,7 @@
 api_platform:
+    title: 'LOL'
+    description: 'Get lol champ base data'
+    version: 'beta'
     show_webby: false
     swagger:
          api_keys:
