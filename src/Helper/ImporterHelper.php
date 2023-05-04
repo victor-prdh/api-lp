@@ -42,7 +42,7 @@ class ImporterHelper
             $champion->setLolId($_champion['id']);
             $champion->setLolKey($_champion['key']);
             $champion->setLore($extraData[$_champion['id']]['lore']);
-            $champion->setBanner(str_replace('__CHAMPID__',$_champion['name'] ,self::BANNER_URL));
+            $champion->setBanner(str_replace('__CHAMPID__',$_champion['id'] ,self::BANNER_URL));
 
             $this->em->persist($champion);
 
