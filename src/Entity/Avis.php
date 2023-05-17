@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Post;
 use App\Repository\AvisRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
+#[ApiResource(operations:[new Post()], denormalizationContext: ['groups' => ['avis:write']])]
 class Avis
 {
     #[ORM\Id]
@@ -15,7 +19,7 @@ class Avis
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('champ:read')]
+    #[Groups(['champ:read', 'avis:write'])]
     private ?string $content = null;
 
     #[ORM\Column]
@@ -27,7 +31,8 @@ class Avis
     private ?User $createdBy = null;
 
     #[ORM\ManyToOne(inversedBy: 'avis')]
-    #[Groups('champ:read')]
+    #[Groups(['champ:read', 'avis:write'])]
+    #[Assert\NotNull()]
     private ?Champion $champion = null;
 
     public function getId(): ?int
