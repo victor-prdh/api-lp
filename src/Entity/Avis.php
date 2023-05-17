@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
 #[ApiResource(operations:[new Post(), new GetCollection()], denormalizationContext: ['groups' => ['avis:write']])]
-#[ApiFilter(SearchFilter::class, properties: ['champion' => 'exact'])]
+#[ApiFilter(SearchFilter::class, properties: ['champion.lolId' => 'exact'])]
 class Avis
 {
     #[ORM\Id]
