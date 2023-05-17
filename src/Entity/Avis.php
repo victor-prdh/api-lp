@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use App\Repository\AvisRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +13,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AvisRepository::class)]
-#[ApiResource(operations:[new Post()], denormalizationContext: ['groups' => ['avis:write']])]
+#[ApiResource(operations:[new Post(), new GetCollection()], denormalizationContext: ['groups' => ['avis:write']])]
+#[ApiFilter(SearchFilter::class, properties: ['champion' => 'exact'])]
 class Avis
 {
     #[ORM\Id]
